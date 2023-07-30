@@ -13,7 +13,9 @@ const db = admin.database()
 
 const app = express();
 const port = process.env.PORT || 5050;
-
+const cors = require('cors')
+const  corsOptions = { origin: 'https://tactics.zacharyringwood.com'}
+app.use(cors(corOptions))
 // Define your routes and APIs here
 //Serves an endgame puzzle with a given id
 app.get("/middlegames/easy/:id", async (req, res) => {
