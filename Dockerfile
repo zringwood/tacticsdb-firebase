@@ -2,7 +2,7 @@
 FROM node:14
 
 # Set the working directory inside the container
-WORKDIR /usr/src/
+WORKDIR /
 
 # Copy your Node.js app's package.json and package-lock.json
 COPY package*.json ./
@@ -20,4 +20,4 @@ ENV PORT 5050
 EXPOSE 5050
 
 # Start your Node.js application
-CMD ["node", "index.js"]  # Replace 'app.js' with the entry point of your Node.js app
+CMD ["node", "src/index.js"]  # Replace 'app.js' with the entry point of your Node.js app
