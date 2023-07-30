@@ -1,15 +1,19 @@
 steps:
   # Step 1: Install Node.js dependencies
-  - name: 'node:14'
-    entrypoint: 'npm'
+  - name: 'gcr.io/cloud-builders/npm'
     args: ['install']
 
-  # Step 2: Build the Node.js app
-  - name: 'node:14'
-    entrypoint: 'npm'
-    args: ['run', 'build']  
+  # Step 2: Build the Node.js app (if required)
+  - name: 'gcr.io/cloud-builders/npm'
+    args: ['run', 'build']  # Replace 'build' with your build script if needed
 
-  # Step 3: Run the Node.js app on your custom port
-  - name: 'node:14'
-    entrypoint: 'npm'
-    args: ['start', '--', '--port', '5050'] 
+  # Step 3: Deploy to Google Cloud Run with the custom port
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - 'your-service-name'
+      - '--image=gcr.io/your-project-id/your-image-name'
+      - '--platform=managed'
+      - '--region=us-central1'
+      - '--set-env-vars=PORT=3000'  # Replace '3000' with your desired port number
