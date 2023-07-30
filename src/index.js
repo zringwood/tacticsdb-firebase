@@ -12,7 +12,7 @@ admin.initializeApp({
 const db = admin.database()
 
 const app = express();
-const port = process.env.PORT || 5050;
+const port =  5050;
 const cors = require('cors')
 const  corsOptions = { origin: 'https://tactics.zacharyringwood.com'}
 app.use(cors(corOptions))
@@ -33,6 +33,6 @@ app.get("/middlegames/easy/:id", async (req, res) => {
 })
 
 
-app.listen(port, () => {
-  console.log(`Server running on port ${port}`);
+app.listen(5050, () => {
+  console.log(`Server running on port ${5050}`);
 });
