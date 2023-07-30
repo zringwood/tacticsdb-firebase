@@ -12,7 +12,7 @@ admin.initializeApp({
 const db = admin.database()
 
 const app = express();
-const port = 5050;
+const port = 8080;
 
 // Define your routes and APIs here
 //Serves an endgame puzzle with a given id
