@@ -20,4 +20,4 @@ ENV PORT 5050
 EXPOSE 5050
 
 # Start your Node.js application
-CMD ["node", "src/index.js"]  
+CMD ["node", "index.js"]  
