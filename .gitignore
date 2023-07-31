@@ -1,5 +1,3 @@
 node_modules
 .env
 keys.json
-csvToJSON.py
-/chess data
