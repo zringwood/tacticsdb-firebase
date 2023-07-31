@@ -2,7 +2,7 @@ const express = require('express')
 const app = express()
 const port =  process.env.PORT || 5050;
 const cors = require('cors')
-const  corsOptions = { origin: process.env.FRONTEND_URL}
+const  corsOptions = { origin: 'https://tactics.zacharyringwood.com/'}
 app.use(cors(corsOptions))
 
 //Serve an introductory puzzle. 
