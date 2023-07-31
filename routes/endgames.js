@@ -1,27 +1,22 @@
 const express = require('express')
 const router = express.Router();
+const {db }= require('../util/admin')
 
-//Serves an endgame puzzle with a given id
-router.get("/:id", async (req, res) => {
-    const puzzleId = req.params.id;
 
-  try {
-    const puzzle = await db.collection('endgames-easy').doc(puzzleId).get();
-    
-    if (!puzzle.exists) {
-      console.log('Puzzle not found');
-      res.status(404).json({ error: 'Puzzle not found' });
-      return;
-    }
+//This looks repetitive, but it's a way to "sanitize" the queries. If we let the frontend decide the collection
+//being queried by passing a string (ie /:difficulty/:id), then we're vulnerable to injection. Better to hardcode
+//the collections. 
+router.get("/easy/:id", async (req, res) => {
+  const puzzleId = req.params.id;
+try {
+  const ref = db.ref('endgames-easy');
+  const snapshot = await ref.child(puzzleId).once("value");
 
-    console.log('puzzle.data():', puzzle.data());
-
-    
-    res.json(puzzle.data());
-  } catch (error) {
-    console.error('Error fetching puzzle:', error);
-    res.status(500).json({ error: 'Unable to fetch puzzle' });
-  }
+  return res.status(200).send(snapshot);
+} catch (error) {
+  console.error('Error fetching puzzle:', error);
+  res.status(500).json({ error: 'Unable to fetch puzzle' });
+}
 })
 
 
