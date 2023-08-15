@@ -4,7 +4,7 @@ require('dotenv').config();
 const serviceAccount = JSON.parse(process.env.ADMIN_SERVICE_ACCOUNT);
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
+  credential: admin.credential.cert(serviceAccount), 
   databaseURL: process.env.DATABASE_URL
 });
 
